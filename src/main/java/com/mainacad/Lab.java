@@ -34,6 +34,7 @@ public class Lab {
     public static final By FORM_STATE_ELEMENT_REACTDROPDOWN = By.cssSelector("#react-select-3-option-1");
     public static final By FORM_CITY_ELEMENT_REACTDROPDOWN = By.cssSelector("#react-select-4-option-1");
     public static final By FORM_SUBMIT = By.cssSelector("#submit");
+    public static final By FORM_FILE_UPLOADER = By.cssSelector("#uploadPicture");
     private static WebDriver driver;
     private static JavascriptExecutor js;
 
@@ -114,15 +115,14 @@ public class Lab {
         driver.findElement(FORM_HOBBY).click();
 
         //Choose file
+        js = (JavascriptExecutor)driver;
+        js.executeScript("arguments[0].scrollIntoView(true);",driver.findElement(FORM_FILE_UPLOADER));
+        driver.findElement(FORM_FILE_UPLOADER).sendKeys("C:\\Automation\\Projects\\LocatorStrategiesLab\\src\\main\\resources\\hahaski.jpg");
 
         //Enter Address
 
 
-        WebElement addressFormElement = driver.findElement(FORM_ADDRESS);
-
-        js = (JavascriptExecutor)driver;
-        js.executeScript("arguments[0].scrollIntoView(true);",addressFormElement);
-        addressFormElement.sendKeys("address");
+        driver.findElement(FORM_ADDRESS).sendKeys("address");
 
         //Choose state and city
         driver.findElement(FORM_STATE_REACTDROPDOWN).click();
@@ -137,8 +137,8 @@ public class Lab {
 
         //TODO: Закрыть браузер
         driver.close();
-
-
         driver.quit();
+
+
     }
 }
